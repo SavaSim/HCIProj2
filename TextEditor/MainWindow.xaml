@@ -1,0 +1,74 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" SizeToContent="WidthAndHeight"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStyle="None"
+        AllowsTransparency="True">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+        <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" />
+    </Window.CommandBindings>
+    <Canvas Height="368" Width="550" Background="WhiteSmoke">
+        <DockPanel Canvas.Left="10" Canvas.Top="10" Height="330" Width="530">
+            <ToolBar DockPanel.Dock="Top" Margin="0,0,27,0" Background="LightGray">
+                <Button Command="ApplicationCommands.New" Margin="0,0,0,0" HorizontalAlignment="Center" ToolTip="New">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/newIco.png" Width="20" Height="20" />
+                </Button>
+                <Separator/>
+                <Button Command="ApplicationCommands.Open" Margin="0,0,0,0" HorizontalAlignment="Center" ToolTip="Open">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/openIco.png" Width="20" Height="20" />
+                </Button>
+                <Separator />
+                <Button Command="ApplicationCommands.Save" Margin="0,0,0,0" HorizontalAlignment="Center" ToolTip="Save">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/saveIco.png" Width="20" Height="20" />
+                </Button>
+                <Separator />
+                <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" ToolTip="Bold">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/boldIco.png" Width="20" Height="20" />
+                </ToggleButton>
+                <Separator />
+                <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" ToolTip="Italic">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/italicIco.png" Width="20" Height="20" />
+                </ToggleButton>
+                <Separator />
+                <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" ToolTip="Underline">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor//Resources/underlineIco.png" Width="20" Height="20" />
+                </ToggleButton>
+                <Separator />
+                <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" ToolTip="Font Family"/>
+                <Separator/>
+                <ComboBox Name="cmbFontSize" Width="50" Margin="0" IsEditable="True" ToolTip="Font Size" SelectionChanged="cmbFontSize_SelectionChanged" />
+                <Separator/>
+                <xctk:ColorPicker Name="cmbColorPicker" Margin="0,3" Height="22" VerticalAlignment="Top" SelectedColorChanged="cmbColorPicker_SelectedColorChanged" Width="60" ToolTip="Color Picker"/>
+            </ToolBar>
+            <ToolBar DockPanel.Dock="Top" Background="LightGray">
+                <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/find.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBox Name="findTextBox" Height="20" Width="120" ToolTip="Find" />
+                <ToggleButton Name="findAndReplace"  Click="FindAndReplace" ToolTip="Find And Replace">
+                    <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/findReplaceIco.png" Width="20" Height="20"/>
+                </ToggleButton>
+                <TextBox Name="replaceTextBox" Height="20" Width="120" ToolTip="Replace"/>
+                <ToggleButton Name="btnDate" Height="20" Width="20" Click="Date_Executed" Margin="10,0,0,0" ToolTip="Date" >
+                    <ToggleButton.Background>
+                        <ImageBrush ImageSource="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/date2.png"/>
+                    </ToggleButton.Background>
+                </ToggleButton>
+            </ToolBar>
+            <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" BorderBrush="DarkGray" Margin="0,5,0,0" Width="526"/>
+        </DockPanel>
+        <StatusBar x:Name="StatusBar" Background="WhiteSmoke" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Canvas.Left="10" Canvas.Top="340" Width="530">
+            <TextBlock Name="StatusBarTextBlock"></TextBlock>
+        </StatusBar>
+        <Button x:Name="CloseButton" Height="30" HorizontalAlignment="Right" Width="30" Click="CloseButton_Click" Background="LightGray" Canvas.Left="520" BorderBrush="WhiteSmoke">
+            <Image Source="C:/Users/medic/Documents/Faks/Vezbe/HCI/EditoreBogati/TextEditor/TextEditor/Resources/closeIco.png" Width="20" Height="20" Canvas.Left="525" Canvas.Top="5" />
+        </Button>
+    </Canvas>
+</Window>
